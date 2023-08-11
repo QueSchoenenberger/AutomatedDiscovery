@@ -24,7 +24,7 @@ cd AutomatedDiscovery
 
 2. Build the Docker container:
 ```
-docker build -t redaction-app .
+docker build -t automated-discovery .
 ```
 
 3. Run the Docker container:
