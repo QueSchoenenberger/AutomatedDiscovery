@@ -79,7 +79,7 @@ def get_queries(metadata_parameter, relations_parameter, first_name, last_name, 
 
         if actions == "showPersonalData":
             prompt_template: str = (
-                "You have been provided with Relational Databases Metadata and Relations. Can you craft a query to "
+                "You have been provided with Relational Databases Metadata and Relations. Can you craft all queries to "
                 "retrieve all information about a person, using placeholders for the Firstname and Lastname as ["
                 "Firstname] and [Lastname]? Your query should include all tables related to the user and adhere to "
                 "the following format: 'SELECT * FROM table_name;'. Please ensure that each query is presented on a "

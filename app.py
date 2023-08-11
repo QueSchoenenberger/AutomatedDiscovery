@@ -15,6 +15,7 @@ app = Flask(__name__)
 UPLOAD_FOLDER = 'static/images/raw'
 OUTPUT_FOLDER = 'static/images/processed'
 
+
 @app.route('/fileUpload', methods=['POST'])
 def file_upload():
     filename, download_filename, modified_pdf_path = '', '', ''
