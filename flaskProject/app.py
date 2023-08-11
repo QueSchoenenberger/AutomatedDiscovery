@@ -14,9 +14,6 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 app = Flask(__name__)
 UPLOAD_FOLDER = 'static/images/raw'
 OUTPUT_FOLDER = 'static/images/processed'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['OUTPUT_FOLDER'] = OUTPUT_FOLDER
-
 
 @app.route('/fileUpload', methods=['POST'])
 def file_upload():
