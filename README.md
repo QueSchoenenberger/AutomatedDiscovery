@@ -24,12 +24,12 @@ cd AutomatedDiscovery
 
 2. Build the Docker container:
 ```
-docker build -t automated-discovery .
+sudo docker build -t automated-discovery .
 ```
 
 3. Run the Docker container:
 ```
-docker run -p 5000:5000 automated-discovery
+sudo docker run -p 5000:5000 automated-discovery
 ```
 Open a web browser and access the application at http://localhost:5000.
 
