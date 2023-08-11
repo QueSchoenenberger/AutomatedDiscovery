@@ -5,7 +5,7 @@ WORKDIR /app
 COPY ./ .
 
 # Install system dependencies for pyodbc
-RUN apt-get update && apt-get install -y gnupg2 curl unixodbc-dev tesseract-ocr
+RUN apt-get update && apt-get install -y gnupg2 curl unixodbc-dev tesseract-ocr libgl1-mesa-glx
 
 # Add Microsoft's repo for the ODBC Driver 17 for SQL Server
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
