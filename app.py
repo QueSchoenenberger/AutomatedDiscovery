@@ -30,52 +30,45 @@ def file_upload():
     if uploaded_file is None:
         return render_template('index.html')
 
-    try:
-        if uploaded_file.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
-            filename = os.path.join(UPLOAD_FOLDER, uploaded_file.filename)
-            filename = os.path.normpath(filename)
-            filename = filename.replace("\\", "/")
-            print(filename)
-            uploaded_file.save(filename)
+    if uploaded_file.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
+        filename = os.path.join(UPLOAD_FOLDER, uploaded_file.filename)
+        filename = os.path.normpath(filename)
+        filename = filename.replace("\\", "/")
+        print(filename)
+        uploaded_file.save(filename)
 
-            download_filename = os.path.join(OUTPUT_FOLDER,
-                                             f'{os.path.splitext(os.path.basename(uploaded_file.filename))[0]}_out.jpg')
+        download_filename = os.path.join(OUTPUT_FOLDER,
+                                         f'{os.path.splitext(os.path.basename(uploaded_file.filename))[0]}_out.jpg')
 
-            image_text, image_metadata, img = get_text_from_image(filename)
-            modified_text = openai_api.remove_personal_data(image_text)
+        image_text, image_metadata, img = get_text_from_image(filename)
+        modified_text = openai_api.remove_personal_data(image_text)
 
-            mask_image(img, download_filename, modified_text, image_metadata)
+        mask_image(img, download_filename, modified_text, image_metadata)
 
-            return render_template('index.html', download_path=download_filename, filename=download_filename)
+        return render_template('index.html', download_path=download_filename, filename=download_filename)
 
-        file_content = extract_text_from_pdf(uploaded_file)
-        modified_file_content = openai_api.remove_personal_data(file_content)
+    file_content = extract_text_from_pdf(uploaded_file)
+    modified_file_content = openai_api.remove_personal_data(file_content)
 
-        pdf_io = io.BytesIO()
-        doc = SimpleDocTemplate(pdf_io, pagesize=letter)
+    pdf_io = io.BytesIO()
+    doc = SimpleDocTemplate(pdf_io, pagesize=letter)
 
-        styles = getSampleStyleSheet()
-        modified_text = modified_file_content.split('\n')
-        story = []
+    styles = getSampleStyleSheet()
+    modified_text = modified_file_content.split('\n')
+    story = []
 
-        for line in modified_text:
-            story.append(Paragraph(line, styles['Normal']))
-            story.append(Spacer(1, 5))
+    for line in modified_text:
+        story.append(Paragraph(line, styles['Normal']))
+        story.append(Spacer(1, 5))
 
-        doc.build(story)
+    doc.build(story)
 
-        pdf_io.seek(0)
-        modified_pdf_path = 'modified_' + uploaded_file.filename
-        with open(modified_pdf_path, 'wb') as f:
-            f.write(pdf_io.read())
+    pdf_io.seek(0)
+    modified_pdf_path = 'modified_' + uploaded_file.filename
+    with open(modified_pdf_path, 'wb') as f:
+        f.write(pdf_io.read())
 
-        return send_file(modified_pdf_path, mimetype='application/pdf')
-
-    finally:
-        if os.path.exists(filename):
-            os.remove(filename)
-        if os.path.exists(modified_pdf_path):
-            os.remove(modified_pdf_path)
+    return send_file(modified_pdf_path, mimetype='application/pdf')
 
 
 def extract_text_from_pdf(pdf_file):
