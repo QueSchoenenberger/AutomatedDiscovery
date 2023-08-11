@@ -18,6 +18,8 @@ RUN apt-get update && ACCEPT_EULA=Y apt-get install -y msodbcsql17
 RUN pip install --upgrade pip && \
     pip install psycopg2-binary flask openai mysql-connector-python pymysql prettytable pyodbc pytesseract pdfplumber reportlab opencv-python
 
+ENV
+
 EXPOSE 5000
 
 CMD ["python", "/app/app.py"]

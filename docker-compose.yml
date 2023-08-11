@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  app:
+    image: automated-discovery
+    ports:
+      - "5001:5000"
+    environment:
+      - OPENAI_API_KEY=<API-KEY>
