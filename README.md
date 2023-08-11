@@ -1,10 +1,10 @@
 # Automated Discovery
 
-The Redaction Assistant Web Application is a Flask-based web application that facilitates the redaction of personal data from PDFs and images using the GPT-FOR-ALL language model. It also provides database querying capabilities based on metadata and user-specified actions. The application is Dockerized for easy deployment.
+The Redaction Assistant Web Application is a Flask-based web application that facilitates the redaction of personal data from PDFs and images using the **GPT-FOR-ALL** language model. It also provides database querying capabilities based on metadata and user-specified actions. The application is Dockerized for easy deployment.
 
 
 ## Features
-- **Text Redaction:** Upload PDFs and images to automatically redact personal data using GPT-FOR-ALL.
+- **Text Redaction:** Upload PDFs and images to automatically redact personal data using **GPT-FOR-ALL**.
 Metadata Extraction: Extract metadata from MySQL, MSSQL, and PostgreSQL databases for querying.
 Database Querying: Generate database queries based on metadata and user actions.
 - **Web Interface:** User-friendly web interface for interacting with the application.
@@ -24,14 +24,14 @@ cd AutomatedDiscovery
 
 2. Build the Docker container:
 ```
-docker build -t redaction-app .
+sudo docker build -t automated-discovery .
 ```
 
 3. Run the Docker container:
 ```
-docker run -p 5000:5000 redaction-app
-Open a web browser and access the application at http://localhost:5000.
+sudo docker run -p 5000:5000 automated-discovery
 ```
+Open a web browser and access the application at http://localhost:5000.
 
 ## Configuration
 - API Key: Set your OpenAI API key in the openai_api.py file.
@@ -44,7 +44,7 @@ Open a web browser and access the application at http://localhost:5000.
 
 
 ## Notes
-- This application uses the "GPT-FOR-ALL" model, so make sure you have an OpenAI API key.
+- This application uses the "**GPT-FOR-ALL**" model, so make sure you have an OpenAI API key.
 - For database querying, provide appropriate database details in the web interface.
 - The application is Dockerized for easy deployment. Adjust the Dockerfile as needed.
 
