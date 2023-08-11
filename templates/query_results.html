@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Query Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+
+<body>
+    <div class="container mt-5">
+        {% for query, table in query_results %}
+        <h4 class="query-title mb-3">{{ query }}</h4>
+        <div class="table-responsive">
+            <table class="table table-dark table-striped">
+                {% if table is string %}
+                <tbody>
+                    <tr>
+                        <td>{{ table }}</td>
+                    </tr>
+                </tbody>
+                {% else %}
+                <thead>
+                    <tr>
+                        {% for key in table[0].keys() %}
+                        <th>{{ key }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in table %}
+                    <tr>
+                        {% for cell in row.values() %}
+                        <td>{{ cell }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                {% endif %}
+            </table>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
