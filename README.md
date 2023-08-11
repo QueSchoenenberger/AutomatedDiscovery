@@ -29,9 +29,9 @@ docker build -t automated-discovery .
 
 3. Run the Docker container:
 ```
-docker run -p 5000:5000 redaction-app
-Open a web browser and access the application at http://localhost:5000.
+docker run -p 5000:5000 automated-discovery
 ```
+Open a web browser and access the application at http://localhost:5000.
 
 ## Configuration
 - API Key: Set your OpenAI API key in the openai_api.py file.
